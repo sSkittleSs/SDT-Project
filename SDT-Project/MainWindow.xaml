@@ -5,8 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SDT_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800"
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None">
     <Grid>
-        
+        <Border Width="auto" Height="auto" BorderBrush="DarkGray" BorderThickness="2"
+                CornerRadius="0,0,30,30">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientBrush.GradientStops>
+                        <GradientStopCollection>
+                            <GradientStop Color="#212D3B" Offset="1"></GradientStop>
+                            <GradientStop Color="#212D3B" Offset="1"></GradientStop>
+                        </GradientStopCollection>
+                    </GradientBrush.GradientStops>
+                </LinearGradientBrush>
+            </Border.Background>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <!-- Upper panel -->
+                <Grid Grid.Row="0">
+                    <TextBlock Text="Untitled Project" Padding="5" Foreground="#ECF3FB"/>
+                    <Ellipse x:Name="EllipseExit" Width="15" Height="15" HorizontalAlignment="Right" Fill="Red" Margin="0,6,10,6" MouseEnter="EllipseExit_MouseEnter" MouseLeave="EllipseExit_MouseLeave" MouseDown="EllipseExit_Click"/>
+                    <Ellipse x:Name="EllipseMaximize" Width="15" Height="15" HorizontalAlignment="Right" Fill="LightSlateGray" Margin="0,6,30,6" MouseEnter="EllipseMaximize_MouseEnter" MouseLeave="EllipseMaximize_MouseLeave" MouseDown="EllipseMaximize_Click"/>
+                    <Ellipse x:Name="EllipseMinimize" Width="15" Height="15" HorizontalAlignment="Right" Fill="White" Margin="0,6,50,6" MouseEnter="EllipseMinimize_MouseEnter" MouseLeave="EllipseMinimize_MouseLeave" MouseDown="EllipseMinimize_Click"/>
+                    
+                </Grid>
+                
+                <!-- Middle panel -->
+                <Grid Grid.Row="1" Background="#1D2733">
+                    
+                </Grid>
+
+                <!-- Bottom panel -->
+                <Grid Grid.Row="2">
+
+                    <TextBlock Text="Free notification space" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center" MouseDown="FreeNotify_Click"/>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </Window>
