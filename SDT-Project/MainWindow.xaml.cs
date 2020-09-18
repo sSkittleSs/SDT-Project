@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+//using MySql.Data.MySqlClient;
 
 namespace SDT_Project
 {
@@ -25,58 +26,113 @@ namespace SDT_Project
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Логика при наведении мыши на кнопку выхода.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EllipseExit_MouseEnter(object sender, MouseEventArgs e)
         {
-            EllipseExit.Fill = Brushes.DarkRed;
+            this.EllipseExit.Fill = Brushes.DarkRed;
             Mouse.OverrideCursor = Cursors.Hand;
         }
 
+        /// <summary>
+        /// Логика при выведении мышки с кнопки выхода.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EllipseExit_MouseLeave(object sender, MouseEventArgs e)
         {
-            EllipseExit.Fill = Brushes.Red;
+            this.EllipseExit.Fill = Brushes.Red;
             Mouse.OverrideCursor = Cursors.Arrow;
         }
 
+        /// <summary>
+        /// Логика при наведении мышки на кнопку максимизирования.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EllipseMaximize_MouseEnter(object sender, MouseEventArgs e)
         {
-            EllipseMaximize.Fill = Brushes.Gray;
+            this.EllipseMaximize.Fill = Brushes.Gray;
             Mouse.OverrideCursor = Cursors.Hand;
         }
 
+        /// <summary>
+        /// Логика при выведении мышки с кнопки максимизирования.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EllipseMaximize_MouseLeave(object sender, MouseEventArgs e)
         {
-            EllipseMaximize.Fill = Brushes.LightSlateGray;
+            this.EllipseMaximize.Fill = Brushes.LightSlateGray;
             Mouse.OverrideCursor = Cursors.Arrow;
         }
 
+        /// <summary>
+        /// Логика при наведении мышки на кнопку минизирования.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EllipseMinimize_MouseEnter(object sender, MouseEventArgs e)
         {
-            EllipseMinimize.Fill = Brushes.LightGray;
+            this.EllipseMinimize.Fill = Brushes.LightGray;
             Mouse.OverrideCursor = Cursors.Hand;
         }
 
+        /// <summary>
+        /// Логика при выведении мышки с кнопки минимизирования.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void EllipseMinimize_MouseLeave(object sender, MouseEventArgs e)
         {
-            EllipseMinimize.Fill = Brushes.White;
+            this.EllipseMinimize.Fill = Brushes.White;
             Mouse.OverrideCursor = Cursors.Arrow;
         }
 
-        private void EllipseExit_Click(object sender, MouseEventArgs e)
+        /// <summary>
+        /// Логика при нажатии на кнопку выхода.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EllipseExit_Click(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
         }
-        private void EllipseMaximize_Click(object sender, MouseEventArgs e)
+
+        /// <summary>
+        /// Логика при нажатии на кнопку максимизирования.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EllipseMaximize_Click(object sender, MouseButtonEventArgs e)
         {
-            WindowState = WindowState.Maximized;
-        }
-        private void EllipseMinimize_Click(object sender, MouseEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
+            this.WindowState = this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
         }
 
-        private void FreeNotify_Click(object sender, MouseEventArgs e) // TODO: Удалить после реализации изменения размера окна.
+        /// <summary>
+        /// Логика при нажатии на кнопку минимизирования.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void EllipseMinimize_Click(object sender, MouseButtonEventArgs e)
         {
-            WindowState = WindowState.Normal;
+            this.WindowState = WindowState.Minimized;
+        }
+
+        /// <summary>
+        /// Логика при удержании левой кнопки мыши в области верхней панели.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GridUpper_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //if (this.WindowState == WindowState.Maximized)
+            //    this.WindowState = WindowState.Normal;
+
+            this.DragMove();
         }
     }
 }
