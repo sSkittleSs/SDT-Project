@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SDT_Project_Service" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SDT_Project_Service" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:simpleType name="DataTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="UserData" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="DataTypes" nillable="true" type="tns:DataTypes" />
+  <xs:simpleType name="MessageImportance">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Common" />
+      <xs:enumeration value="Important" />
+      <xs:enumeration value="SysInfo" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="MessageImportance" nillable="true" type="tns:MessageImportance" />
+</xs:schema>

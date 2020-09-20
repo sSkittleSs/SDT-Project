@@ -16,6 +16,7 @@ namespace SDT_Project_Host
                 host.Open();
                 Console.WriteLine("Хост стартовал!");
                 Console.ReadLine();
+                host.Close();
             }
         }
     }

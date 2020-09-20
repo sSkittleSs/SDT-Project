@@ -6,11 +6,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SDT_Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800"
-        AllowsTransparency="True" Background="Transparent" WindowStyle="None">
+        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize"
+        AllowsTransparency="True" Background="Transparent" WindowStyle="None" MaxWidth="1920" MaxHeight="1080">
+    
+    <!-- ResizeBorder
+    <WindowChrome.WindowChrome>
+        <WindowChrome 
+        CaptionHeight="0"
+        ResizeBorderThickness="5" />
+    </WindowChrome.WindowChrome>
+    -->
+    
     <Grid>
-        <Border Width="auto" Height="auto" BorderBrush="DarkGray" BorderThickness="2"
-                CornerRadius="1,1,30,30">
+        <!-- #690192 -->
+        <Border Width="auto" Height="auto" BorderBrush="DarkGray" BorderThickness="2" CornerRadius="1,1,30,30">
             <Border.Background>
                 <LinearGradientBrush>
                     <GradientBrush.GradientStops>
@@ -21,6 +30,7 @@
                     </GradientBrush.GradientStops>
                 </LinearGradientBrush>
             </Border.Background>
+            
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -32,33 +42,110 @@
                 <Grid Grid.Row="0" MouseDown="GridUpper_MouseDown">
                     <TextBlock Text="Untitled Project" Padding="5" Foreground="#ECF3FB"/>
                     
-                    <Ellipse x:Name="EllipseExit" Width="15" Height="15" HorizontalAlignment="Right" Fill="Red" Margin="0,6,10,6" 
-                             MouseEnter="EllipseExit_MouseEnter" 
-                             MouseLeave="EllipseExit_MouseLeave" 
-                             MouseDown="EllipseExit_Click"/>
-                    
-                    <Ellipse x:Name="EllipseMaximize" Width="15" Height="15" HorizontalAlignment="Right" Fill="LightSlateGray" Margin="0,6,30,6" 
-                             MouseEnter="EllipseMaximize_MouseEnter" 
-                             MouseLeave="EllipseMaximize_MouseLeave" 
-                             MouseDown="EllipseMaximize_Click"/>
-                    
-                    <Ellipse x:Name="EllipseMinimize" Width="15" Height="15" HorizontalAlignment="Right" Fill="White" Margin="0,6,50,6" 
-                             MouseEnter="EllipseMinimize_MouseEnter" 
-                             MouseLeave="EllipseMinimize_MouseLeave" 
-                             MouseDown="EllipseMinimize_Click"/>
-                    
+                    <!-- Control buttons -->
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Ellipse x:Name="EllipseMinimize" Width="15" Height="15" Margin="0,6,6,6" MouseDown="EllipseMinimize_Click">
+                            <Ellipse.Style>
+                                <Style TargetType="Ellipse">
+                                    <Setter Property="Fill" Value="White"/>
+                                    <Setter Property="Cursor" Value="Arrow"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=EllipseMinimize}" Value="True">
+                                            <Setter Property="Fill" Value="Gray"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+
+                        <Ellipse x:Name="EllipseMaximize" Width="15" Height="15" Margin="0,6,6,6" MouseDown="EllipseMaximize_Click">
+                            <Ellipse.Style>
+                                <Style TargetType="Ellipse">
+                                    <Setter Property="Fill" Value="LightSlateGray"/>
+                                    <Setter Property="Cursor" Value="Arrow"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=EllipseMaximize}" Value="True">
+                                            <Setter Property="Fill" Value="DarkSlateGray"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+
+                        <Ellipse x:Name="EllipseExit"  Width="15" Height="15" Margin="0,6,6,6" MouseDown="EllipseExit_Click">
+                            <Ellipse.Style>
+                                <Style TargetType="Ellipse">
+                                    <Setter Property="Fill" Value="Red"/>
+                                    <Setter Property="Cursor" Value="Arrow"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=EllipseExit}" Value="True">
+                                            <Setter Property="Fill" Value="DarkRed"/>
+                                            <Setter Property="Cursor" Value="Hand"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Ellipse.Style>
+                        </Ellipse>
+                    </StackPanel>
+
                 </Grid>
                 
                 <!-- Middle panel -->
+
                 <Grid Grid.Row="1" Background="#1D2733">
-                    
+                    <Border Height="auto" Width="auto" BorderBrush="DarkGray" BorderThickness="0,1">
+                        <Button x:Name="ButtonTest" Foreground="White" Content="Connect" HorizontalAlignment="Left" Margin="99,72,0,0" VerticalAlignment="Top" Width="100" Height="25" Click="ButtonTest_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border x:Name="brdr" TextBlock.Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Background>
+                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStopCollection>
+                                            <GradientStop Color="#1D2733" Offset="0"/>
+                                            <GradientStop Color="#1D2733" Offset="0.9"/>
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                            <Button.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                        <EventTrigger RoutedEvent="Button.MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="Purple" Duration="0:0:0.5"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="Button.MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="#1D2733" Duration="0:0:0.3"/>
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                    </Border>
                 </Grid>
 
-                <!-- Bottom panel -->
-                <Grid Grid.Row="2">
+                    <!-- Bottom panel -->
+                <Grid Grid.Row="2" Height="25">
                     <TextBlock Text="Free notification space" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
                     
                 </Grid>
+                
             </Grid>
         </Border>
     </Grid>

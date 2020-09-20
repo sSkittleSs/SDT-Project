@@ -68,7 +68,10 @@ namespace SDT_Project_Service
                     }
                 case MessageImportance.SysInfo:
                     {
-                        Console.WriteLine($"System information:\n{DateTime.Now.ToShortTimeString()}: {msg}");
+                        Console.WriteLine($"System information:" +
+                            $"________________________________________________" +
+                            $"\n{DateTime.Now.ToShortTimeString()}: {msg}" +
+                            $"________________________________________________");
                         break;
                     }
             }
