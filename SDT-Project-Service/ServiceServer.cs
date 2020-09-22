@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -7,31 +8,55 @@ using System.Text;
 
 namespace SDT_Project_Service
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single, IncludeExceptionDetailInFaults = true)]
     public class ServiceServer : IServiceServer
     {
+        MySqlConnection connection = new MySqlConnection("server = localhost; user = root; database = sdt-project; password = root;");
         List<ServerUser> Users = new List<ServerUser>();
-        int NextId = 1;
-        public int Connect(string userName, string userPassword)
+        uint NextId = 1;
+        public uint Connect(string userName, string userPassword)
         {
             // TODO: Добавить запрос на поиск пользователя в БД.
+            StringBuilder strings = new StringBuilder();
 
-            ServerUser user = new ServerUser()
+            connection.Open();
+
+            string sql = $"SELECT name, password, id, usertype FROM users WHERE name = '{userName}' and password = '{userPassword}'";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command?.ExecuteReader();
+            uint result = 0;
+            if (reader.Read())
             {
-                Id = NextId++,
-                Name = userName,
-                Password = userPassword,
-                UserType = UserTypes.User,
-                operationContext = OperationContext.Current
-            };
+                UInt32 id = reader.GetUInt32(2);
+                UInt32 type = reader.GetUInt32(3);
+                strings.AppendLine($"Результат запроса к БД:\nName: {reader.GetString(0) ?? "Null"}\nPassword: {reader.GetString(1) ?? "Null"}\n" +
+                                   $"Id: {id}\n UserType: {GetUserTypeInString(type)}");
+                connection.Close();
 
-            Users.Add(user);
-            ConsoleLog($"Пользователь {user.Name} был подключен к серверу с идентификатором {user.Id}.", MessageImportance.SysInfo);
+                ServerUser user = new ServerUser()
+                {
+                    Id = id,
+                    Name = userName,
+                    Password = userPassword,
+                    UserType = (UserTypes)type,
+                    operationContext = OperationContext.Current
+                };
 
-            return user.Id;
+                Users.Add(user);
+                strings.AppendLine($"Пользователь {user.Name} был подключен к серверу с идентификатором {user.Id}.");
+                result = user.Id;
+            }
+            else
+            {
+                strings.AppendLine($"Пользователь {userName} не был подключен к серверу, поскольку запрос вернул null.");
+            }
+
+            reader.Close();
+            ConsoleLog(strings.ToString(), MessageImportance.SysInfo);
+            return result;
         }
 
-        public void Disconnect(int id)
+        public void Disconnect(uint id)
         {
             var user = Users.FirstOrDefault(i => i.Id == id);
             if (user != null)
@@ -41,12 +66,12 @@ namespace SDT_Project_Service
             }
         }
 
-        public int Registering()
+        public uint Registering()
         {
             throw new NotImplementedException();
         }
 
-        public string GetUserData(int id, DataTypes dataType = DataTypes.UserData)
+        public string GetUserData(uint id, DataTypes dataType = DataTypes.UserData)
         {
             throw new NotImplementedException();
         }
@@ -68,12 +93,29 @@ namespace SDT_Project_Service
                     }
                 case MessageImportance.SysInfo:
                     {
-                        Console.WriteLine($"System information:" +
-                            $"________________________________________________" +
-                            $"\n{DateTime.Now.ToShortTimeString()}: {msg}" +
-                            $"________________________________________________");
+                        Console.WriteLine($"\tSystem notification:" +
+                            $"\n________________________________________________\n\n" +
+                            $"{DateTime.Now.ToShortTimeString()}: {msg}" +
+                            $"\n________________________________________________\n");
                         break;
                     }
+            }
+        }
+
+        private string GetUserTypeInString(uint typeID)
+        {
+            switch (typeID)
+            {
+                case 0:
+                    return "User";
+                case 1:
+                    return "Accountant";
+                case 2:
+                    return "Admin";
+                case 3:
+                    return "SysAdmin";
+                default:
+                    return "Undefined";
             }
         }
     }

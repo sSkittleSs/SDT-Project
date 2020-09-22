@@ -14,16 +14,16 @@ namespace SDT_Project_Service
     public interface IServiceServer
     {
         [OperationContract]
-        int Connect(string userName, string userPassword);
+        uint Connect(string userName, string userPassword);
 
         [OperationContract(IsOneWay = true)]
-        void Disconnect(int id);
+        void Disconnect(uint id);
 
         [OperationContract]
-        int Registering();
+        uint Registering();
 
         [OperationContract]
-        string GetUserData(int id, DataTypes dataType = DataTypes.UserData);
+        string GetUserData(uint id, DataTypes dataType = DataTypes.UserData);
 
         [OperationContract(IsOneWay = true)]
         void ConsoleLog(string msg, MessageImportance importance = 0);

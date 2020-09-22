@@ -5,31 +5,52 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-//using MySql.Data.MySqlClient;
 using SDT_Project.ServiceServer;
+
 
 namespace SDT_Project
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для LoginWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window, ServiceServer.IServiceServerCallback
+    public partial class LoginWindow : Window, ServiceServer.IServiceServerCallback
     {
         bool isConnected = false;
         ServiceServerClient client;
         uint id;
 
-        public MainWindow()
+        public LoginWindow()
         {
             InitializeComponent();
+        }
+
+        private void ButtonConnect_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (!isConnected)
+            {
+                client = new ServiceServerClient(new System.ServiceModel.InstanceContext(this));
+                id = client.Connect("Skittles", "admin12");
+                if (id == 0)
+                {
+                    // TODO: Добавить реализацию уведомления о неподключении.
+                    NotifyTextBlock.Text = "Вы не были подключены к серверу.";
+                    return;
+                }
+                //MessageBox.Show($"UserID: {id}", "Notify");
+                NotifyTextBlock.Text = "Вы были подключены к серверу.";
+                ButtonTest.IsEnabled = false;
+                isConnected = true;
+
+                // TODO: Реализация переключения окна на главное с закрытием текущего.
+                // !!! Примечание: При закрытии текущего окна присваивать полю id значение 0 !!!
+            }
         }
 
         /// <summary>
@@ -40,16 +61,6 @@ namespace SDT_Project
         private void EllipseExit_Click(object sender, MouseButtonEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-
-        /// <summary>
-        /// Логика при нажатии на кнопку максимизирования.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EllipseMaximize_Click(object sender, MouseButtonEventArgs e)
-        {
-            this.WindowState = this.WindowState == WindowState.Normal ? WindowState.Maximized : WindowState.Normal;
         }
 
         /// <summary>
@@ -79,10 +90,10 @@ namespace SDT_Project
 
         public void DataCallback(string data)
         {
-            ((IServiceServerCallback)WindowMain).DataCallback(data);
+            throw new NotImplementedException();
         }
 
-        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void LoginWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             client?.Disconnect(id);
         }
