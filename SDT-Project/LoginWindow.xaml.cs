@@ -32,14 +32,28 @@ namespace SDT_Project
 
         private void ButtonConnect_Click(object sender, RoutedEventArgs e)
         {
+            if (LoginTextBox.Text == String.Empty || PasswordTextBox.Text == String.Empty)
+            {
+                StringBuilder notify = new StringBuilder();
+                if (LoginTextBox.Text == String.Empty)
+                    notify.Append("логин");
+                if (PasswordTextBox.Text == String.Empty)
+                    if (notify.Length > 0)
+                        notify.Append(" и пароль");
+                    else notify.Append("пароль");
+
+                NotifyTextBlock.Text = $"Вы не ввели {notify}.";
+                return;
+            }
 
             if (!isConnected)
             {
-                client = new ServiceServerClient(new System.ServiceModel.InstanceContext(this));
-                id = client.Connect("Skittles", "admin12");
+                client = client ?? new ServiceServerClient(new System.ServiceModel.InstanceContext(this));
+                id = client.Connect(LoginTextBox.Text, PasswordTextBox.Text);
                 if (id == 0)
                 {
                     // TODO: Добавить реализацию уведомления о неподключении.
+                    client = null;
                     NotifyTextBlock.Text = "Вы не были подключены к серверу.";
                     return;
                 }

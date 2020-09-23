@@ -30,8 +30,7 @@ namespace SDT_Project_Service
                 UInt32 id = reader.GetUInt32(2);
                 UInt32 type = reader.GetUInt32(3);
                 strings.AppendLine($"Результат запроса к БД:\nName: {reader.GetString(0) ?? "Null"}\nPassword: {reader.GetString(1) ?? "Null"}\n" +
-                                   $"Id: {id}\n UserType: {GetUserTypeInString(type)}");
-                connection.Close();
+                                   $"Id: {id}\nUserType: {GetUserTypeInString(type)}");
 
                 ServerUser user = new ServerUser()
                 {
@@ -48,10 +47,11 @@ namespace SDT_Project_Service
             }
             else
             {
-                strings.AppendLine($"Пользователь {userName} не был подключен к серверу, поскольку запрос вернул null.");
+                strings.AppendLine($"Пользователь {userName} не был подключен к серверу, поскольку запрос ничего не вернул.");
             }
 
             reader.Close();
+            connection.Close();
             ConsoleLog(strings.ToString(), MessageImportance.SysInfo);
             return result;
         }
