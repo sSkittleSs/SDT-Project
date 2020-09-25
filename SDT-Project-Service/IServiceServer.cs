@@ -20,7 +20,7 @@ namespace SDT_Project_Service
         void Disconnect(uint id);
 
         [OperationContract]
-        uint Registering();
+        uint Registering(string userName, string userPassword);
 
         [OperationContract]
         string GetUserData(uint id, DataTypes dataType = DataTypes.UserData);

@@ -32,35 +32,39 @@ namespace SDT_Project
 
         private void ButtonConnect_Click(object sender, RoutedEventArgs e)
         {
-            if (LoginTextBox.Text == String.Empty || PasswordTextBox.Text == String.Empty)
+            Cursor = Cursors.AppStarting;
+            if (LoginTextBox.Text == String.Empty || PasswordBox.Password == String.Empty)
             {
                 StringBuilder notify = new StringBuilder();
                 if (LoginTextBox.Text == String.Empty)
                     notify.Append("логин");
-                if (PasswordTextBox.Text == String.Empty)
+                if (PasswordBox.Password == String.Empty)
                     if (notify.Length > 0)
                         notify.Append(" и пароль");
                     else notify.Append("пароль");
 
                 NotifyTextBlock.Text = $"Вы не ввели {notify}.";
+                Cursor = Cursors.Arrow;
                 return;
             }
 
             if (!isConnected)
             {
                 client = client ?? new ServiceServerClient(new System.ServiceModel.InstanceContext(this));
-                id = client.Connect(LoginTextBox.Text, PasswordTextBox.Text);
+                id = client.Connect(LoginTextBox.Text, PasswordBox.Password);
+                // TODO: Добавить уведомление о некорректном пароле/логине.
                 if (id == 0)
                 {
-                    // TODO: Добавить реализацию уведомления о неподключении.
                     client = null;
-                    NotifyTextBlock.Text = "Вы не были подключены к серверу.";
+                    NotifyTextBlock.Text = "Неверный логин или пароль.";
+                    Cursor = Cursors.Arrow;
                     return;
                 }
                 //MessageBox.Show($"UserID: {id}", "Notify");
                 NotifyTextBlock.Text = "Вы были подключены к серверу.";
                 ButtonTest.IsEnabled = false;
                 isConnected = true;
+                Cursor = Cursors.Arrow;
 
                 // TODO: Реализация переключения окна на главное с закрытием текущего.
                 // !!! Примечание: При закрытии текущего окна присваивать полю id значение 0 !!!
@@ -110,6 +114,24 @@ namespace SDT_Project
         private void LoginWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             client?.Disconnect(id);
+        }
+
+        private void OnPasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (PasswordBox.Password.Length > 0)
+                PasswordWatermark.Visibility = Visibility.Collapsed;
+            else
+                PasswordWatermark.Visibility = Visibility.Visible;
+        }
+
+        private void ResetPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //TODO: Открываем новое окно для восстановления пароля с овнером (тек. окно)
+        }
+
+        private void Register_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            //TODO: Открываем новое окно для регистрации с овнером (тек. окно)
         }
     }
 }

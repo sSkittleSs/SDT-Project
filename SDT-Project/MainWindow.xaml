@@ -100,7 +100,7 @@
 
                     <!-- Bottom panel -->
                 <Grid Grid.Row="2" Height="25">
-                    <TextBlock x:Name="NotifyTextBlock" Text="Free notification space" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="NotifyTextBlock" Text="Notification space" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
                     
                 </Grid>
                 

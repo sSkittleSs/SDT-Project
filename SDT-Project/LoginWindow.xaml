@@ -9,6 +9,7 @@
         AllowsTransparency="True" Background="Transparent" WindowStyle="None" Closing="LoginWindow_Closing" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+
         <Style x:Key="TextBox" TargetType="TextBox">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="200"/>
@@ -19,6 +20,7 @@
             <Setter Property="BorderBrush" Value="#59A9A9A9"/>
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Padding" Value="10,2.5,0,0"/>
+            <Setter Property="CaretBrush" Value="#ECF3FB"/>
             <Setter Property="Background">
                 <Setter.Value>
                     <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
@@ -34,7 +36,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                            
+
                         <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="True">
                             <Border Height="auto" Width="auto" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
                                     Background="{TemplateBinding Background}" CornerRadius="2">
@@ -42,7 +44,7 @@
                                               IsTabStop="False" Background="{x:Null}" TextElement.Foreground="{TemplateBinding Foreground}"/>
                             </Border>
                         </Grid>
-                            
+
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="BorderBrush" Value="#7FA9A9A9"/>
@@ -51,7 +53,7 @@
                                 <Setter Property="BorderBrush" Value="#FF1D578C"/>
                                 <!--#FF1D578C-->
                             </Trigger>
-                            <EventTrigger RoutedEvent="TextBox.GotFocus">
+                            <EventTrigger RoutedEvent="GotFocus">
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
@@ -59,7 +61,7 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
-                            <EventTrigger RoutedEvent="TextBox.LostFocus">
+                            <EventTrigger RoutedEvent="LostFocus">
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
@@ -68,11 +70,186 @@
                                 </BeginStoryboard>
                             </EventTrigger>
                         </ControlTemplate.Triggers>
-                        
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+        <Style x:Key="PasswordBox" TargetType="PasswordBox">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="200"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#ECF3FB"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderBrush" Value="#59A9A9A9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="10,2.5,0,0"/>
+            <Setter Property="CaretBrush" Value="#ECF3FB"/>
+            <EventSetter Event="PasswordChanged" Handler="OnPasswordChanged"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF17212D" Offset="0"/>
+                                <GradientStop Color="#1D2733" Offset="0.9"/>
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate>
+
+                        <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="True">
+                            <Border Height="auto" Width="auto" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Background="{TemplateBinding Background}" CornerRadius="2">
+                                <ScrollViewer x:Name="PART_ContentHost" BorderThickness="0" Padding="{TemplateBinding Padding}"
+                                              IsTabStop="False" Background="{x:Null}" TextElement.Foreground="{TemplateBinding Foreground}"/>
+                            </Border>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#7FA9A9A9"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF1D578C"/>
+                                <!--#FF1D578C-->
+                            </Trigger>
+                            <EventTrigger RoutedEvent="GotFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="#91800080" Duration="0:0:0.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="LostFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="#FF17212D" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Button" TargetType="Button">
+            <Setter Property="Height" Value="25"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#ECF3FB"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="BorderBrush" Value="#59A9A9A9"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
+                        <LinearGradientBrush.GradientStops>
+                            <GradientStopCollection>
+                                <GradientStop Color="#FF17212D" Offset="0"/>
+                                <GradientStop Color="#1D2733" Offset="0.9"/>
+                            </GradientStopCollection>
+                        </LinearGradientBrush.GradientStops>
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+
+                        <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="True">
+                            <Border Height="auto" Width="auto" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" 
+                                    Background="{TemplateBinding Background}" CornerRadius="2">
+                                <Viewbox>
+                                    <ContentPresenter Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"/>
+                                </Viewbox>
+                            </Border>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="BorderBrush" Value="#7FA9A9A9"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="BorderBrush" Value="#FF1D578C"/>
+                                <!--#FF1D578C-->
+                            </Trigger>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="#91800080" Duration="0:0:0.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="#FF17212D" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="GotFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="#91800080" Duration="0:0:0.5"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="LostFocus">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
+                                                                    To="#FF17212D" Duration="0:0:0.3"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBlock" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#FF0D6A96"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!---->
+                            <ColorAnimation Storyboard.TargetProperty="Foreground.Color" 
+                                                                    To="#ECF3FB" Duration="0:0:0.5"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <!---->
+                            <ColorAnimation Storyboard.TargetProperty="Foreground.Color" 
+                                                                    To="#FF0D6A96" Duration="0:0:0.3"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
     
     <Grid>
@@ -98,7 +275,7 @@
 
                 <!-- Upper panel -->
                 <Grid Grid.Row="0" MouseDown="GridUpper_MouseDown">
-                    <TextBlock Text="Login" Padding="5" Foreground="#ECF3FB"/>
+                    <TextBlock Text="Вход" Padding="5" Foreground="#ECF3FB"/>
 
                     <!-- Control buttons -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -139,8 +316,9 @@
 
                 <Grid Grid.Row="1" Background="#1D2733">
                     
-                    <TextBox x:Name="LoginTextBox" Text="" Style="{StaticResource TextBox}" Margin="0,0,0,40"/>
-                    <TextBlock IsHitTestVisible="False" FontSize="13" Text="Введите логин" Foreground="#FF535559" Margin="0,0,0,40"
+                    <TextBox x:Name="LoginTextBox" Style="{StaticResource TextBox}" Width="250" Margin="0,0,0,70"/>
+                    <TextBlock IsHitTestVisible="False" FontSize="13" Text="Введите логин" 
+                               Foreground="#FF535559" Margin="0,0,0,70"
                                HorizontalAlignment="Center" VerticalAlignment="Center">
                         <TextBlock.Style>
                             <Style TargetType="TextBlock">
@@ -153,74 +331,22 @@
                             </Style>
                         </TextBlock.Style>
                     </TextBlock>
-                    <TextBox x:Name="PasswordTextBox" Text="" Style="{StaticResource TextBox}" Margin="0,40,0,10"/>
-                    <TextBlock IsHitTestVisible="False" FontSize="13" Text="Введите пароль" Foreground="#FF535559" Margin="0,40,0,10"
-                               HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock.Style>
-                            <Style TargetType="TextBlock">
-                                <Setter Property="Visibility" Value="Collapsed"/>
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding Text, ElementName=PasswordTextBox}" Value="">
-                                        <Setter Property="Visibility" Value="Visible"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBlock.Style>
-                    </TextBlock>
+                    
+                    <PasswordBox x:Name="PasswordBox" Style="{StaticResource PasswordBox}" Width="250" Margin="0,40,0,40"/>
+                    <TextBlock x:Name="PasswordWatermark" IsHitTestVisible="False" FontSize="13" Text="Введите пароль" 
+                               Foreground="#FF535559" Margin="0,40,0,40"
+                               HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    <TextBlock FontSize="13" Text="Забыли пароль?" Style="{StaticResource TextBlock}"
+                               Margin="0,45,152,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               MouseDown="ResetPassword_MouseDown"/>
+                    <TextBlock FontSize="13" Text="Создать учетную запись" Style="{StaticResource TextBlock}"
+                               Margin="104,45,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" 
+                               MouseDown="Register_MouseDown"/>
 
                     <Border Height="auto" Width="auto" BorderBrush="DarkGray" BorderThickness="0,1">
-                        <Button x:Name="ButtonTest" Foreground="White" Content="Connect" HorizontalAlignment="Center" Margin="0,98,0,0" 
-                                VerticalAlignment="Center" Width="100" Height="25" Click="ButtonConnect_Click">
-                            <Button.Template>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border x:Name="brdr" TextBlock.Foreground="{TemplateBinding Foreground}" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="2">
-                                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" Content="{TemplateBinding Content}" />
-                                        <Border.Style>
-                                            <Style TargetType="Border">
-                                                <Setter Property="BorderBrush" Value="#59A9A9A9"/>
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="BorderBrush" Value="#7FA9A9A9"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Border.Style>
-                                    </Border>
-                                </ControlTemplate>
-                            </Button.Template>
-                            <Button.Background>
-                                <LinearGradientBrush StartPoint="0,1" EndPoint="0,0">
-                                    <LinearGradientBrush.GradientStops>
-                                        <GradientStopCollection>
-                                            <GradientStop Color="#FF17212D" Offset="0"/>
-                                            <GradientStop Color="#1D2733" Offset="0.9"/>
-                                        </GradientStopCollection>
-                                    </LinearGradientBrush.GradientStops>
-                                </LinearGradientBrush>
-                            </Button.Background>
-                            <Button.Style>
-                                <Style>
-                                    <Style.Triggers>
-                                        <EventTrigger RoutedEvent="Button.MouseEnter">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
-                                                                    To="Purple" Duration="0:0:0.5"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                        <EventTrigger RoutedEvent="Button.MouseLeave">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <ColorAnimation Storyboard.TargetProperty="Background.GradientStops[0].Color" 
-                                                                    To="#FF17212D" Duration="0:0:0.3"/>
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Button.Style>
-                        </Button>
+                        <Button x:Name="ButtonTest" Content="Войти" Style="{StaticResource Button}" 
+                                Width="125" Margin="0,98,0,0"/>
                     </Border>
                     
                 </Grid>
@@ -228,7 +354,8 @@
                 <!-- Bottom panel -->
                 <Grid Grid.Row="2" Height="25">
 
-                    <TextBlock x:Name="NotifyTextBlock" Text="Free notification space" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="NotifyTextBlock" Text="Место для уведомлений" Padding="5" 
+                               Foreground="#ECF3FB" HorizontalAlignment="Center"/>
 
                 </Grid>
 

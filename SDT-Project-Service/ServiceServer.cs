@@ -13,10 +13,8 @@ namespace SDT_Project_Service
     {
         MySqlConnection connection = new MySqlConnection("server = localhost; user = root; database = sdt-project; password = root;");
         List<ServerUser> Users = new List<ServerUser>();
-        uint NextId = 1;
         public uint Connect(string userName, string userPassword)
         {
-            // TODO: Добавить запрос на поиск пользователя в БД.
             StringBuilder strings = new StringBuilder();
 
             connection.Open();
@@ -66,9 +64,60 @@ namespace SDT_Project_Service
             }
         }
 
-        public uint Registering()
+        public uint Registering(string userName, string userPassword)
         {
-            throw new NotImplementedException();
+            StringBuilder strings = new StringBuilder();
+
+            connection.Open();
+
+            string sql = $"SELECT name, password, id, usertype FROM users WHERE name = '{userName}' and password = '{userPassword}'";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            MySqlDataReader reader = command?.ExecuteReader();
+            uint result = 0;
+            if (reader.Read())
+            {
+                UInt32 id = reader.GetUInt32(2);
+                UInt32 type = reader.GetUInt32(3);
+                strings.AppendLine($"Результат запроса к БД:\nName: {reader.GetString(0) ?? "Null"}\nPassword: {reader.GetString(1) ?? "Null"}\n" +
+                                   $"Id: {id}\nUserType: {GetUserTypeInString(type)}");
+                strings.AppendLine($"Пользователь {reader.GetString(0)} уже зарегистрирован под идентификатором {id}.");
+                result = 0;
+            }
+            else
+            {
+                sql = $"INSERT INTO `users` (`name`, `password`, `usertype`, `cardid`, `id`) VALUES ('{userName}', '{userPassword}', '0', NULL, NULL)";
+                command = new MySqlCommand(sql, connection);
+                reader = command?.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    strings.Append($"Пользователь {userName} был зарегистрирован");
+                    sql = $"SELECT id FROM users WHERE name = '{userName}' and password = '{userPassword}'";
+                    command = new MySqlCommand(sql, connection);
+                    reader = command?.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        UInt32 id = reader.GetUInt32(0);
+                        strings.Append($"под идентификатором {id}.");
+                        result = id;
+                    }
+                    else
+                    {
+                        strings.Append($".");
+                        result = 0;
+                    }
+                }
+                else
+                {
+                    strings.AppendLine($"Пользователь {userName} не был зарегистрирован.");
+                }
+            }
+
+            reader.Close();
+            connection.Close();
+            ConsoleLog(strings.ToString(), MessageImportance.SysInfo);
+            return result;
         }
 
         public string GetUserData(uint id, DataTypes dataType = DataTypes.UserData)
