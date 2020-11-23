@@ -16,31 +16,42 @@ using SDT_Project.ServiceServer;
 namespace SDT_Project
 {
     /// <summary>
-    /// Логика взаимодействия для LoginWindow.xaml
+    /// Логика взаимодействия для RegWindow.xaml
     /// </summary>
-    public partial class LoginWindow : Window, ServiceServer.IServiceServerCallback
+    public partial class RegWindow : Window, ServiceServer.IServiceServerCallback
     {
         bool isConnected = false;
         ServiceServerClient client;
         uint id;
 
-        public LoginWindow()
+        public RegWindow()
         {
             InitializeComponent();
         }
 
-        private void ButtonConnect_Click(object sender, RoutedEventArgs e)
+        public RegWindow(Window own)
+        {
+            InitializeComponent();
+            Owner = own;
+        }
+
+        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
         {
             Cursor = Cursors.AppStarting;
-            if (LoginTextBox.Text == String.Empty || PasswordBox.Password == String.Empty)
+            if (LoginTextBox.Text == String.Empty || PasswordBox.Password == String.Empty || RePasswordBox.Password == String.Empty)
             {
                 StringBuilder notify = new StringBuilder();
                 if (LoginTextBox.Text == String.Empty)
                     notify.Append("логин");
                 if (PasswordBox.Password == String.Empty)
                     if (notify.Length > 0)
-                        notify.Append(" и пароль");
+                        notify.Append(", пароль");
                     else notify.Append("пароль");
+
+                if (RePasswordBox.Password == String.Empty)
+                    if (notify.Length > 0)
+                        notify.Append(" и подтверждение пароля");
+                    else notify.Append("подтверждение пароля");
 
                 NotifyTextBlock.Text = $"Вы не ввели {notify}.";
                 Cursor = Cursors.Arrow;
@@ -50,24 +61,24 @@ namespace SDT_Project
             if (!isConnected)
             {
                 client = client ?? new ServiceServerClient(new System.ServiceModel.InstanceContext(this));
-                id = client.Connect(LoginTextBox.Text, PasswordBox.Password);
+                id = client.Registering(LoginTextBox.Text, PasswordBox.Password);
                 // TODO: Добавить уведомление о некорректном пароле/логине.
                 if (id == 0)
                 {
                     client = null;
-                    NotifyTextBlock.Text = "Неверный логин или пароль.";
+                    NotifyTextBlock.Text = "Регистрация не произошла.";
                     Cursor = Cursors.Arrow;
                     return;
                 }
                 //MessageBox.Show($"UserID: {id}", "Notify");
-                NotifyTextBlock.Text = "Вы были подключены к серверу.";
-                ButtonTest.IsEnabled = false;
+                NotifyTextBlock.Text = "Вы были зарегистрированы.";
+                ButtonRegister.IsEnabled = false;
                 isConnected = true;
-                Cursor = Cursors.Arrow;
 
-                // TODO: Реализация переключения окна на главное с закрытием текущего.
-                // !!! Примечание: При закрытии текущего окна присваивать полю id значение 0 !!!
+
+                Close();
             }
+            Cursor = Cursors.Arrow;
         }
 
         /// <summary>
@@ -110,9 +121,9 @@ namespace SDT_Project
             throw new NotImplementedException();
         }
 
-        private void LoginWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        private void RegWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            client?.Disconnect(id);
+            Owner.Show();
         }
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
@@ -123,17 +134,12 @@ namespace SDT_Project
                 PasswordWatermark.Visibility = Visibility.Visible;
         }
 
-        private void ResetPassword_MouseDown(object sender, MouseButtonEventArgs e)
+        private void OnRePasswordChanged(object sender, RoutedEventArgs e)
         {
-            //TODO: Открываем новое окно для восстановления пароля с овнером (тек. окно)
-        }
-
-        private void Register_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            RegWindow reg = new RegWindow(this);
-            Hide();
-            reg.ShowDialog();
-
+            if (RePasswordBox.Password.Length > 0)
+                RePasswordWatermark.Visibility = Visibility.Collapsed;
+            else
+                RePasswordWatermark.Visibility = Visibility.Visible;
         }
     }
 }

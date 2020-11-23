@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SDT_Project.App">
+    <Position X="12.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SDT_Project.LoginWindow" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQESBAAIQABAIAAAAAABAAAAhA=</HashCode>
+      <FileName>LoginWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SDT_Project.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAAAAAAAAAAAAAQBAAIQABAAAAAEAABAAAAgA=</HashCode>
+      <FileName>MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SDT_Project.RegWindow" BaseTypeListCollapsed="true">
+    <Position X="4.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAEQBAAIQAJAAAAAAAABAAAAgI=</HashCode>
+      <FileName>RegWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SDT_Project.ServiceServer.ServiceServerClient" BaseTypeListCollapsed="true">
+    <Position X="6" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAEAAAEAAAAgAAAIAAAAgAAAAQAAAIAAEAAAA=</HashCode>
+      <FileName>Connected Services\ServiceServer\Reference.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SDT_Project.Properties.Resources">
+    <Position X="6" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAABEAAAAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SDT_Project.Properties.Settings">
+    <Position X="2.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="System.Windows.Window" Collapsed="true">
+    <Position X="4.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Configuration.ApplicationSettingsBase" Collapsed="true">
+    <Position X="2.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.ServiceModel.DuplexClientBase&lt;TChannel&gt;">
+    <Position X="4.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.Windows.Application">
+    <Position X="12.5" Y="2" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="System.Windows.Threading.DispatcherObject">
+    <Position X="10.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="System.ServiceModel.ClientBase&lt;TChannel&gt;">
+    <Position X="2.5" Y="4.75" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="System.ServiceModel.ClientBase&lt;TChannel&gt;.BeginOperationDelegate" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Delegate Name="System.ServiceModel.ClientBase&lt;TChannel&gt;.EndOperationDelegate" Collapsed="true">
+        <TypeIdentifier />
+      </Delegate>
+      <Class Name="System.ServiceModel.ClientBase&lt;TChannel&gt;.InvokeAsyncCompletedEventArgs" Collapsed="true">
+        <TypeIdentifier />
+      </Class>
+      <Class Name="System.ServiceModel.ClientBase&lt;TChannel&gt;.ChannelBase&lt;T&gt;" Collapsed="true">
+        <TypeIdentifier />
+        <Lollipop Position="0.2" />
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="SDT_Project.ServiceServer.IServiceServer">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQEAAAAEAAAEAAAAgAAAIAAAAgAAAAQAAAIAAEAAAA=</HashCode>
+      <FileName>Connected Services\ServiceServer\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SDT_Project.ServiceServer.IServiceServerCallback">
+    <Position X="0.5" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Connected Services\ServiceServer\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SDT_Project.ServiceServer.IServiceServerChannel" Collapsed="true">
+    <Position X="0.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Connected Services\ServiceServer\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="SDT_Project.ServiceServer.DataTypes">
+    <Position X="14.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>Connected Services\ServiceServer\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SDT_Project.ServiceServer.MessageImportance">
+    <Position X="14.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAQAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Connected Services\ServiceServer\Reference.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

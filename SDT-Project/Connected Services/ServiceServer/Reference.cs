@@ -51,10 +51,10 @@ namespace SDT_Project.ServiceServer {
         System.Threading.Tasks.Task DisconnectAsync(uint id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/Registering", ReplyAction="http://tempuri.org/IServiceServer/RegisteringResponse")]
-        uint Registering();
+        uint Registering(string userName, string userPassword);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/Registering", ReplyAction="http://tempuri.org/IServiceServer/RegisteringResponse")]
-        System.Threading.Tasks.Task<uint> RegisteringAsync();
+        System.Threading.Tasks.Task<uint> RegisteringAsync(string userName, string userPassword);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetUserData", ReplyAction="http://tempuri.org/IServiceServer/GetUserDataResponse")]
         string GetUserData(uint id, SDT_Project.ServiceServer.DataTypes dataType);
@@ -120,12 +120,12 @@ namespace SDT_Project.ServiceServer {
             return base.Channel.DisconnectAsync(id);
         }
         
-        public uint Registering() {
-            return base.Channel.Registering();
+        public uint Registering(string userName, string userPassword) {
+            return base.Channel.Registering(userName, userPassword);
         }
         
-        public System.Threading.Tasks.Task<uint> RegisteringAsync() {
-            return base.Channel.RegisteringAsync();
+        public System.Threading.Tasks.Task<uint> RegisteringAsync(string userName, string userPassword) {
+            return base.Channel.RegisteringAsync(userName, userPassword);
         }
         
         public string GetUserData(uint id, SDT_Project.ServiceServer.DataTypes dataType) {

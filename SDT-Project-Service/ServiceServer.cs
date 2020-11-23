@@ -12,18 +12,18 @@ namespace SDT_Project_Service
     public class ServiceServer : IServiceServer
     {
         MySqlConnection connection = new MySqlConnection("server = localhost; user = root; database = sdt-project; password = root;");
-        List<ServerUser> Users = new List<ServerUser>();
+        List<ServerUser> users = new List<ServerUser>();
         public uint Connect(string userName, string userPassword)
         {
             StringBuilder strings = new StringBuilder();
-
+            ConsoleColor consoleColor = ConsoleColor.White;
             connection.Open();
 
             string sql = $"SELECT name, password, id, usertype FROM users WHERE name = '{userName}' and password = '{userPassword}'";
             MySqlCommand command = new MySqlCommand(sql, connection);
             MySqlDataReader reader = command?.ExecuteReader();
             uint result = 0;
-            if (reader.Read())
+            if (reader.HasRows && reader.Read())
             {
                 UInt32 id = reader.GetUInt32(2);
                 UInt32 type = reader.GetUInt32(3);
@@ -36,30 +36,32 @@ namespace SDT_Project_Service
                     Name = userName,
                     Password = userPassword,
                     UserType = (UserTypes)type,
-                    operationContext = OperationContext.Current
+                    OperationContext = OperationContext.Current
                 };
 
-                Users.Add(user);
-                strings.AppendLine($"Пользователь {user.Name} был подключен к серверу с идентификатором {user.Id}.");
+                consoleColor = ConsoleColor.Green;
+                users.Add(user);
+                strings.AppendLine($"Пользователь {user.Name} был подключен к серверу с идентификатором {user.Id} и правами {GetUserTypeInString(type)}'а.");
                 result = user.Id;
             }
             else
             {
+                consoleColor = ConsoleColor.DarkYellow;
                 strings.AppendLine($"Пользователь {userName} не был подключен к серверу, поскольку запрос ничего не вернул.");
             }
 
             reader.Close();
             connection.Close();
-            ConsoleLog(strings.ToString(), MessageImportance.SysInfo);
+            ConsoleLog(strings.ToString(), MessageImportance.SysInfo, consoleColor);
             return result;
         }
 
         public void Disconnect(uint id)
         {
-            var user = Users.FirstOrDefault(i => i.Id == id);
+            var user = users.FirstOrDefault(i => i.Id == id);
             if (user != null)
             {
-                Users.Remove(user);
+                users.Remove(user);
                 ConsoleLog($"Пользователь {user.Name} с идентификатором {user.Id} был отключен от сервера.", MessageImportance.SysInfo);
             }
         }
@@ -69,34 +71,36 @@ namespace SDT_Project_Service
             StringBuilder strings = new StringBuilder();
 
             connection.Open();
+            ConsoleColor consoleColor = ConsoleColor.White;
 
             string sql = $"SELECT name, password, id, usertype FROM users WHERE name = '{userName}' and password = '{userPassword}'";
             MySqlCommand command = new MySqlCommand(sql, connection);
             MySqlDataReader reader = command?.ExecuteReader();
             uint result = 0;
-            if (reader.Read())
+            if (reader.HasRows && reader.Read())
             {
                 UInt32 id = reader.GetUInt32(2);
                 UInt32 type = reader.GetUInt32(3);
                 strings.AppendLine($"Результат запроса к БД:\nName: {reader.GetString(0) ?? "Null"}\nPassword: {reader.GetString(1) ?? "Null"}\n" +
                                    $"Id: {id}\nUserType: {GetUserTypeInString(type)}");
                 strings.AppendLine($"Пользователь {reader.GetString(0)} уже зарегистрирован под идентификатором {id}.");
-                result = 0;
             }
             else
             {
                 sql = $"INSERT INTO `users` (`name`, `password`, `usertype`, `cardid`, `id`) VALUES ('{userName}', '{userPassword}', '0', NULL, NULL)";
+                reader.Close();
                 command = new MySqlCommand(sql, connection);
-                reader = command?.ExecuteReader();
+                int? rows = command?.ExecuteNonQuery();
 
-                if (reader.Read())
+                if (rows != null)
                 {
                     strings.Append($"Пользователь {userName} был зарегистрирован");
                     sql = $"SELECT id FROM users WHERE name = '{userName}' and password = '{userPassword}'";
+
                     command = new MySqlCommand(sql, connection);
                     reader = command?.ExecuteReader();
 
-                    if (reader.Read())
+                    if (reader.HasRows && reader.Read())
                     {
                         UInt32 id = reader.GetUInt32(0);
                         strings.Append($"под идентификатором {id}.");
@@ -105,18 +109,19 @@ namespace SDT_Project_Service
                     else
                     {
                         strings.Append($".");
-                        result = 0;
                     }
+                    consoleColor = ConsoleColor.Green;
                 }
                 else
                 {
+                    consoleColor = ConsoleColor.DarkYellow;
                     strings.AppendLine($"Пользователь {userName} не был зарегистрирован.");
                 }
             }
 
             reader.Close();
             connection.Close();
-            ConsoleLog(strings.ToString(), MessageImportance.SysInfo);
+            ConsoleLog(strings.ToString(), MessageImportance.SysInfo, consoleColor);
             return result;
         }
 
@@ -125,8 +130,9 @@ namespace SDT_Project_Service
             throw new NotImplementedException();
         }
 
-        public void ConsoleLog(string msg, MessageImportance importance = 0)
+        public void ConsoleLog(string msg, MessageImportance importance = 0, ConsoleColor foregroundColor = ConsoleColor.White)
         {
+            Console.ForegroundColor = foregroundColor;
             switch (importance)
             {
                 case MessageImportance.Common:

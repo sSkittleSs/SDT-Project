@@ -26,7 +26,7 @@ namespace SDT_Project_Service
         string GetUserData(uint id, DataTypes dataType = DataTypes.UserData);
 
         [OperationContract(IsOneWay = true)]
-        void ConsoleLog(string msg, MessageImportance importance = 0);
+        void ConsoleLog(string msg, MessageImportance importance = 0, ConsoleColor foregroundColor = ConsoleColor.Black);
 
     }
 

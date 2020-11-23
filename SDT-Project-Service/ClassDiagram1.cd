@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SDT_Project_Service.ServerUser">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAACAACAAAAAAAAAAI=</HashCode>
+      <FileName>ServerUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SDT_Project_Service.ServiceServer" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAQAAAAAAAAAAAAAAgABAIAAAAQAAAAQAAAIAAAAAAA=</HashCode>
+      <FileName>ServiceServer.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.669" Collapsed="true" />
+  </Class>
+  <Interface Name="SDT_Project_Service.IServiceServer">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAAAAAAgAAAIAAAAAAAAAQAAAIAAAAAAA=</HashCode>
+      <FileName>IServiceServer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="SDT_Project_Service.IServiceDataCallback">
+    <Position X="6" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IServiceServer.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="SDT_Project_Service.MessageImportance">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAQAQAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IServiceServer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SDT_Project_Service.DataTypes">
+    <Position X="11.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAA=</HashCode>
+      <FileName>IServiceServer.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="SDT_Project_Service.UserTypes">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAAAgABAAAAAAAQAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ServerUser.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

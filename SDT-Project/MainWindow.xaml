@@ -40,7 +40,7 @@
                 
                 <!-- Upper panel -->
                 <Grid Grid.Row="0" MouseDown="GridUpper_MouseDown">
-                    <TextBlock Text="Untitled Project" Padding="5" Foreground="#ECF3FB"/>
+                    <TextBlock Text="Главное" Padding="5" Foreground="#ECF3FB"/>
                     
                     <!-- Control buttons -->
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
@@ -100,7 +100,7 @@
 
                     <!-- Bottom panel -->
                 <Grid Grid.Row="2" Height="25">
-                    <TextBlock x:Name="NotifyTextBlock" Text="Notification space" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="NotifyTextBlock" Text="Место для уведомлений" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
                     
                 </Grid>
                 

@@ -14,6 +14,6 @@ namespace SDT_Project_Service
         public string Name { get; set; }
         public string Password { get; set; }
         public UserTypes UserType { get; set; }
-        public OperationContext operationContext { get; set; }
+        public OperationContext OperationContext { get; set; }
     }
 }
