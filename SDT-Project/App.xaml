@@ -2,8 +2,51 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:SDT_Project"
-             StartupUri="LoginWindow.xaml">
+             xmlns:uc="clr-namespace:SDT_Project.UserControls"
+             StartupUri="Views\LoginWindow.xaml">
     <Application.Resources>
+        <!--#region Object styles-->
+        <Style x:Name="rootItemButton" x:Key="ItemButtonStyle" TargetType="{x:Type uc:ItemButton}">
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type uc:ItemButton}">
+
+                        <Grid x:Name="root" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" SnapsToDevicePixels="True">
+                            <Border Height="auto" Width="auto"
+                                    Background="{TemplateBinding Background}" CornerRadius="2">
+                                <Grid>
+                                    <Viewbox>
+                                        <ContentPresenter Margin="{TemplateBinding Padding}" Content="{TemplateBinding Content}"/>
+                                    </Viewbox>
+
+                                    <Grid>
+                                        <Grid.Style>
+                                            <Style TargetType="Grid">
+                                                <Setter Property="Visibility" Value="Visible"/>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ActiveLine, ElementName=rootItemButton}" Value="False">
+                                                        <Setter Property="Visibility" Value="Hidden"/>
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Grid.Style>
+                                        <Rectangle Width="{TemplateBinding Width}" Height="4" Fill="Blue" VerticalAlignment="Bottom" Margin="0 0 0 3"/>
+                                        <Rectangle Width="{TemplateBinding BlurLineWidth}" Height="4" Fill="Blue" VerticalAlignment="Bottom" Margin="0 0 0 3">
+                                            <Rectangle.Effect>
+                                                <BlurEffect Radius="8" KernelType="Gaussian" />
+                                            </Rectangle.Effect>
+                                        </Rectangle>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </Grid>
+
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="TextBox" TargetType="TextBox">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Width" Value="200"/>
@@ -225,7 +268,6 @@
                 <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
                         <Storyboard>
-                            <!---->
                             <ColorAnimation Storyboard.TargetProperty="Foreground.Color" 
                                                                     To="#ECF3FB" Duration="0:0:0.5"/>
                         </Storyboard>
@@ -234,7 +276,6 @@
                 <EventTrigger RoutedEvent="MouseLeave">
                     <BeginStoryboard>
                         <Storyboard>
-                            <!---->
                             <ColorAnimation Storyboard.TargetProperty="Foreground.Color" 
                                                                     To="#FF0D6A96" Duration="0:0:0.3"/>
                         </Storyboard>
@@ -360,5 +401,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--#endregion -->
     </Application.Resources>
 </Application>

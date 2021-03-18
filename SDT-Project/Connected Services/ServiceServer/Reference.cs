@@ -63,10 +63,10 @@ namespace SDT_Project.ServiceServer {
         System.Threading.Tasks.Task<string> GetUserDataAsync(uint id, SDT_Project.ServiceServer.DataTypes dataType);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceServer/ConsoleLog")]
-        void ConsoleLog(string msg, SDT_Project.ServiceServer.MessageImportance importance);
+        void ConsoleLog(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceServer/ConsoleLog")]
-        System.Threading.Tasks.Task ConsoleLogAsync(string msg, SDT_Project.ServiceServer.MessageImportance importance);
+        System.Threading.Tasks.Task ConsoleLogAsync(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -136,12 +136,12 @@ namespace SDT_Project.ServiceServer {
             return base.Channel.GetUserDataAsync(id, dataType);
         }
         
-        public void ConsoleLog(string msg, SDT_Project.ServiceServer.MessageImportance importance) {
-            base.Channel.ConsoleLog(msg, importance);
+        public void ConsoleLog(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor) {
+            base.Channel.ConsoleLog(msg, importance, foregroundColor);
         }
         
-        public System.Threading.Tasks.Task ConsoleLogAsync(string msg, SDT_Project.ServiceServer.MessageImportance importance) {
-            return base.Channel.ConsoleLogAsync(msg, importance);
+        public System.Threading.Tasks.Task ConsoleLogAsync(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor) {
+            return base.Channel.ConsoleLogAsync(msg, importance, foregroundColor);
         }
     }
 }

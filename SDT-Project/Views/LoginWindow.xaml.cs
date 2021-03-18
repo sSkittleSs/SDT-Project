@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using SDT_Project.ServiceServer;
+using SDT_Project.ViewModels;
 
 namespace SDT_Project
 {
@@ -133,7 +134,6 @@ namespace SDT_Project
             RegWindow reg = new RegWindow(this);
             Hide();
             reg.ShowDialog();
-
         }
     }
 }

@@ -20,7 +20,7 @@ namespace SDT_Project_Service
         void Disconnect(uint id);
 
         [OperationContract]
-        uint Registering(string userName, string userPassword);
+        uint Registering(string userName, string userPassword, string email);
 
         [OperationContract]
         string GetUserData(uint id, DataTypes dataType = DataTypes.UserData);
@@ -28,6 +28,11 @@ namespace SDT_Project_Service
         [OperationContract(IsOneWay = true)]
         void ConsoleLog(string msg, MessageImportance importance = 0, ConsoleColor foregroundColor = ConsoleColor.Black);
 
+        [OperationContract]
+        string SendConfirmationLetter(string email);
+
+        [OperationContract(IsOneWay = true)]
+        void SendLetter(string email, string body, string subject = "Notification");
     }
 
     public interface IServiceDataCallback
