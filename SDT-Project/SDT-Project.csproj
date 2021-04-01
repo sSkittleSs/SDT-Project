@@ -42,6 +42,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\MySQL\MySQL Connector Net 8.0.21\Assemblies\v4.5.2\MySql.Data.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="Prism, Version=8.0.0.1909, Culture=neutral, PublicKeyToken=40ee6c3a2184dc59, processorArchitecture=MSIL">
       <HintPath>..\packages\Prism.Core.8.0.0.1909\lib\net47\Prism.dll</HintPath>
     </Reference>
@@ -55,8 +56,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -75,14 +78,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AdditionalStructures\BitmapConverter.cs" />
+    <Compile Include="AdditionalStructures\ServerUser.cs" />
+    <Compile Include="AdditionalStructures\Transaction.cs" />
+    <Compile Include="AdditionalStructures\TravelCard.cs" />
     <Compile Include="AdditionalStructures\UserInfoConverter.cs" />
+    <Compile Include="Models\CardModel.xaml.cs">
+      <DependentUpon>CardModel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\ConnectionModel.cs" />
-    <Compile Include="Models\RegistationModel.cs" />
     <Compile Include="UserControls\ItemButton.cs" />
+    <Compile Include="ViewModels\BaseBM.cs" />
+    <Compile Include="ViewModels\BuyCardWindowVM.cs" />
     <Compile Include="ViewModels\LoginWindowVM.cs" />
+    <Compile Include="ViewModels\MainWindowVM.cs" />
+    <Compile Include="ViewModels\MyCardWindowVM.cs" />
+    <Compile Include="ViewModels\RegWindowVM.cs" />
+    <Compile Include="ViewModels\UCPWindowVM.cs" />
+    <Compile Include="Views\BuyCardWindow.xaml.cs">
+      <DependentUpon>BuyCardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MyCardWindow.xaml.cs">
+      <DependentUpon>MyCardWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RegWindow.xaml.cs">
       <DependentUpon>RegWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\UCPWindow.xaml.cs">
+      <DependentUpon>UCPWindow.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Models\CardModel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BuyCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -107,7 +139,15 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\MyCardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\RegWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UCPWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,6 +183,15 @@
     <None Include="Connected Services\ServiceServer\item3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServiceServer\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServiceServer\SDT_Project.ServiceServer.Transaction.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServiceServer\SDT_Project.ServiceServer.TravelCard.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServiceServer\ServiceServer.wsdl" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -174,6 +223,25 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\img.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\img2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bc_back.png" />
+    <Resource Include="images\bc_front.png" />
+    <Resource Include="images\wc_back.png" />
+    <Resource Include="images\wc_front.png" />
+    <Resource Include="images\wc_red_front.png" />
+    <Resource Include="images\wc_vio_front.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\edit.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

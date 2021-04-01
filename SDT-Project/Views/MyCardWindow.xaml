@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="SDT_Project.Views.MyCardWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SDT_Project.Views"
+      xmlns:models="clr-namespace:SDT_Project.Models"
+      mc:Ignorable="d" 
+      Height="360" Width="660" Background="Transparent">
+
+    <Border Height="auto" Width="auto" BorderBrush="DarkGray" Background="#1D2733" BorderThickness="1" CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="2.5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <Border Grid.Row="1" Grid.Column="1" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="20" Grid.ColumnSpan="2" Margin="0 10" Background="#1D2733" MouseWheel="OnMouseWheel" MouseLeftButtonDown="OnMouseLeftButtonDown" MouseUp="OnMouseUp" MouseMove="OnMouseMove"/>
+
+            <models:CardModel x:Name="cardModel" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Height="Auto" Width="Auto" Margin="15 12" FrontBrush="{Binding FrontBrush, UpdateSourceTrigger=PropertyChanged}" BackBrush="{Binding BackBrush, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <Border BorderBrush="DarkGray" BorderThickness="1" CornerRadius="15" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+
+                <Border Grid.Row="0" BorderBrush="DarkGray" BorderThickness="0 0 0 1" CornerRadius="0" Grid.ColumnSpan="2"/>
+                <Border Grid.Row="1" BorderBrush="DarkGray" BorderThickness="0 0 0 1" CornerRadius="0" Grid.ColumnSpan="2"/>
+                <Border Grid.Row="0" Grid.Column="1" BorderBrush="DarkGray" BorderThickness="1 0 0 0" CornerRadius="0" Grid.RowSpan="3"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Text="Дата окончания:" Style="{StaticResource TextBlockCard}"/>
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Тип проездного:" Style="{StaticResource TextBlockCard}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Количество поездок:" Style="{StaticResource TextBlockCard}"/>
+
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding EndTime, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBlockCard}"/>
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding CardType, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBlockCard}"/>
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding TripsAmount, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBlockCard}"/>
+            </Grid>
+
+            <StackPanel Grid.Row="2" Grid.Column="2" Orientation="Vertical" VerticalAlignment="Center">
+                <Button x:Name="Button" Content="{Binding ButtonText, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource ButtonExtend}" Command="{Binding Extend, Mode=OneWay}" Margin="0 5"/>
+                <Button x:Name="ButtonPay" Content="Оплатить проезд" Style="{StaticResource ButtonExtend}" Command="{Binding Pay, Mode=OneWay}" Margin="0 5"/>
+                
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

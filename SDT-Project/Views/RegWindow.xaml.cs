@@ -11,119 +11,83 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using SDT_Project.Models;
 using SDT_Project.ServiceServer;
+using SDT_Project.ViewModels;
 
 namespace SDT_Project
 {
     /// <summary>
     /// Логика взаимодействия для RegWindow.xaml
     /// </summary>
-    public partial class RegWindow : Window, ServiceServer.IServiceServerCallback
+    public partial class RegWindow : UserControl, ServiceServer.IServiceServerCallback
     {
-        bool isConnected = false;
-        ServiceServerClient client;
-        uint id;
+        Window mainWindow;
 
         public RegWindow()
         {
             InitializeComponent();
         }
 
-        public RegWindow(Window own)
+        public RegWindow(Window own, ConnectionModel model)
         {
             InitializeComponent();
-            Owner = own;
+
+            mainWindow = own;
+
+            DataContext = new RegWindowVM(mainWindow, model);
         }
 
-        private void ButtonRegister_Click(object sender, RoutedEventArgs e)
-        {
-            Cursor = Cursors.AppStarting;
-            if (LoginTextBox.Text == String.Empty || PasswordBox.Password == String.Empty || RePasswordBox.Password == String.Empty)
-            {
-                StringBuilder notify = new StringBuilder();
-                if (LoginTextBox.Text == String.Empty)
-                    notify.Append("логин");
-                if (PasswordBox.Password == String.Empty)
-                    if (notify.Length > 0)
-                        notify.Append(", пароль");
-                    else notify.Append("пароль");
+        //private void ButtonRegister_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Cursor = Cursors.AppStarting;
+        //    if (LoginTextBox.Text == String.Empty || PasswordBox.Password == String.Empty || RePasswordBox.Password == String.Empty)
+        //    {
+        //        StringBuilder notify = new StringBuilder();
+        //        if (LoginTextBox.Text == String.Empty)
+        //            notify.Append("логин");
+        //        if (PasswordBox.Password == String.Empty)
+        //            if (notify.Length > 0)
+        //                notify.Append(", пароль");
+        //            else notify.Append("пароль");
 
-                if (RePasswordBox.Password == String.Empty)
-                    if (notify.Length > 0)
-                        notify.Append(" и подтверждение пароля");
-                    else notify.Append("подтверждение пароля");
+        //        if (RePasswordBox.Password == String.Empty)
+        //            if (notify.Length > 0)
+        //                notify.Append(" и подтверждение пароля");
+        //            else notify.Append("подтверждение пароля");
 
-                NotifyTextBlock.Text = $"Вы не ввели {notify}.";
-                Cursor = Cursors.Arrow;
-                return;
-            }
+        //        //NotifyTextBlock.Text = $"Вы не ввели {notify}.";
+        //        Cursor = Cursors.Arrow;
+        //        return;
+        //    }
 
-            if (!isConnected)
-            {
-                client = client ?? new ServiceServerClient(new System.ServiceModel.InstanceContext(this));
-                id = client.Registering(LoginTextBox.Text, PasswordBox.Password);
-                // TODO: Добавить уведомление о некорректном пароле/логине.
-                if (id == 0)
-                {
-                    client = null;
-                    NotifyTextBlock.Text = "Регистрация не произошла.";
-                    Cursor = Cursors.Arrow;
-                    return;
-                }
-                //MessageBox.Show($"UserID: {id}", "Notify");
-                NotifyTextBlock.Text = "Вы были зарегистрированы.";
-                ButtonRegister.IsEnabled = false;
-                isConnected = true;
+        //    if (!isConnected)
+        //    {
+        //        client = client ?? new ServiceServerClient(new System.ServiceModel.InstanceContext(this));
+        //        id = client.Registering(LoginTextBox.Text, PasswordBox.Password);
+        //        // TODO: Добавить уведомление о некорректном пароле/логине.
+        //        if (id == 0)
+        //        {
+        //            client = null;
+        //            //NotifyTextBlock.Text = "Регистрация не произошла.";
+        //            Cursor = Cursors.Arrow;
+        //            return;
+        //        }
+        //        //MessageBox.Show($"UserID: {id}", "Notify");
+        //        //NotifyTextBlock.Text = "Вы были зарегистрированы.";
+        //        ButtonRegister.IsEnabled = false;
+        //        isConnected = true;
 
 
-                Close();
-            }
-            Cursor = Cursors.Arrow;
-        }
+        //        //Close();
+        //    }
+        //    Cursor = Cursors.Arrow;
+        //}
 
-        /// <summary>
-        /// Логика при нажатии на кнопку выхода.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EllipseExit_Click(object sender, MouseButtonEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        /// <summary>
-        /// Логика при нажатии на кнопку минимизирования.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void EllipseMinimize_Click(object sender, MouseButtonEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
-
-        /// <summary>
-        /// Логика при удержании левой кнопки мыши в области верхней панели.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GridUpper_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //if (this.WindowState == WindowState.Maximized)
-            //    this.WindowState = WindowState.Normal;
-
-            if (e.LeftButton == MouseButtonState.Pressed)
-                this.DragMove();
-
-        }
-
+        
         public void DataCallback(string data)
         {
             throw new NotImplementedException();
-        }
-
-        private void RegWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            Owner.Show();
         }
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SDT_Project_Service" />
-  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" />
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
   <xs:element name="Connect">
     <xs:complexType>
       <xs:sequence>
@@ -29,6 +30,7 @@
       <xs:sequence>
         <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
         <xs:element minOccurs="0" name="userPassword" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -54,12 +56,170 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:unsignedInt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetEmailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetEmailResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:unsignedInt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" minOccurs="0" name="GetCardResult" nillable="true" type="q2:TravelCard" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastTransaction">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:unsignedInt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLastTransactionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" minOccurs="0" name="GetLastTransactionResult" nillable="true" type="q3:Transaction" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PayForTheTrip">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="newBalance" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PayForTheTripResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PayForTheTripResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeUsername">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="newUsername" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeUsernameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChangeUsernameResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeEmail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="newEmail" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChangeEmailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChangeEmailResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuyCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="sum" type="xs:double" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" minOccurs="0" name="type" type="q4:CardTypes" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" minOccurs="0" name="category" type="q5:CardCategories" />
+        <xs:element minOccurs="0" name="balance" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuyCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="BuyCardResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtendCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardId" type="xs:unsignedInt" />
+        <xs:element minOccurs="0" name="newBalance" type="xs:int" />
+        <xs:element minOccurs="0" name="newDate" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ExtendCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ExtendCardResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ConsoleLog">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="msg" nillable="true" type="xs:string" />
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/SDT_Project_Service" minOccurs="0" name="importance" type="q2:MessageImportance" />
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="foregroundColor" type="q3:ConsoleColor" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/SDT_Project_Service" minOccurs="0" name="importance" type="q6:MessageImportance" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="foregroundColor" type="q7:ConsoleColor" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserType">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:unsignedInt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserTypeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUserTypeResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendConfirmationLetter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendConfirmationLetterResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SendConfirmationLetterResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SendLetter">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="body" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="subject" nillable="true" type="xs:string" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

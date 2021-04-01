@@ -6,18 +6,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SDT_Project"
         xmlns:uc="clr-namespace:SDT_Project.UserControls"
+        xmlns:vm="clr-namespace:SDT_Project.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" ResizeMode="NoResize"
+        Title="MainWindow" Height="506.25" Width="900" ResizeMode="NoResize"
         AllowsTransparency="True" Background="Transparent" WindowStyle="None" Closing="MainWindow_Closing" WindowStartupLocation="CenterScreen">
 
-    <!-- ResizeBorder
-    <WindowChrome.WindowChrome>
-        <WindowChrome 
-        CaptionHeight="0"
-        ResizeBorderThickness="5" />
-    </WindowChrome.WindowChrome>
-    -->
-    
     <Grid>
         <!-- #690192 -->
         <Border Width="auto" Height="auto" BorderBrush="DarkGray" BorderThickness="2" CornerRadius="1,1,30,30">
@@ -60,7 +53,7 @@
                             </Ellipse.Style>
                         </Ellipse>
 
-                        <Ellipse x:Name="EllipseMaximize" Width="15" Height="15" Margin="0,6,6,6" MouseDown="EllipseMaximize_Click">
+                        <Ellipse x:Name="EllipseMaximize" Width="15" Height="15" Margin="0,6,6,6" MouseDown="EllipseMaximize_Click" IsEnabled="False">
                             <Ellipse.Style>
                                 <Style TargetType="Ellipse">
                                     <Setter Property="Fill" Value="LightSlateGray"/>
@@ -97,27 +90,40 @@
 
                 <Grid Grid.Row="1" Background="#1D2733">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition Height="0.13*"/>
                         <RowDefinition Height="1*"/>
-                        <RowDefinition Height="0.3*"/>
                     </Grid.RowDefinitions>
-                    <Border Grid.RowSpan="3" Height="auto" Width="auto" BorderBrush="DarkGray" BorderThickness="0,1"/>
+                    <Border Grid.RowSpan="2" Height="auto" Width="auto" BorderBrush="DarkGray" BorderThickness="0,1"/>
 
                     <Grid Grid.Row="0" Background="#FF161D25">
-                        <Border Height="Auto" Width="Auto" BorderBrush="DarkGray" BorderThickness="0,1" />
-
-                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                            <uc:ItemButton Content="Регистрация" Style="{StaticResource ItemButtonStyle}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="3"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="3"/>
+                        </Grid.RowDefinitions>
+                        <Border Grid.RowSpan="3" Grid.Row="0" Height="Auto" Width="Auto" BorderBrush="DarkGray" BorderThickness="0,1"/>
+                        
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+                            <uc:ItemButton Content="Покупка проездного" Style="{StaticResource ItemButtonStyleAfterConnect1}" Command="{Binding OpenBuyCard,Mode=OneWay}"/>
+                            <uc:ItemButton Content="Мой Проездной" Style="{StaticResource ItemButtonStyleAfterConnect2}" Command="{Binding OpenMyCard,Mode=OneWay}"/>
+                            <uc:ItemButton Content="Личный кабинет" Style="{StaticResource ItemButtonStyleAfterConnect3}" Command="{Binding OpenUCP,Mode=OneWay}"/>
+                            <uc:ItemButton Content="Авторизация" Style="{StaticResource ItemButtonStyleBeforeConnect1}" Command="{Binding OpenAuthorize,Mode=OneWay}"/>
+                            <uc:ItemButton Content="Регистрация" Style="{StaticResource ItemButtonStyleBeforeConnect2}" Command="{Binding OpenRegister,Mode=OneWay}"/>
                             <!--<Button Style="{StaticResource ItemButton}" Content="Регистрация" FontSize="2" Foreground="White" Background="Transparent"/>-->
                             
                         </StackPanel>
+
+                        <Button Grid.Row="1" Margin="5" Style="{StaticResource ButtonExit}" BorderThickness="0" Command="{Binding Disconnect, Mode=OneWay}"/>
+
                     </Grid>
+                    
+                    <UserControl Grid.Row="1" Content="{Binding CurrentView}" Height="Auto" Width="Auto" MaxHeight="360" MaxWidth="720"/>
                     
                 </Grid>
 
                     <!-- Bottom panel -->
                 <Grid Grid.Row="2" Height="25">
-                    <TextBlock x:Name="NotifyTextBlock" Text="Место для уведомлений" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
+                    <TextBlock x:Name="NotifyTextBlock" Text="{Binding Notify, UpdateSourceTrigger=PropertyChanged}" Padding="5" Foreground="#ECF3FB" Grid.Row="2" HorizontalAlignment="Center"/>
                     
                 </Grid>
                 

@@ -57,5 +57,11 @@
     <None Include="app.config" />
     <None Include="ClassDiagram1.cd" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SDT-Project\SDT-Project.csproj">
+      <Project>{affbf0a3-7b82-4d24-b98d-474c74dc5444}</Project>
+      <Name>SDT-Project</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

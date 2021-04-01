@@ -34,7 +34,8 @@
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SDT_Project_Service" />
-      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" />
+      <xsd:import schemaLocation="http://localhost:8301/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IServiceServer_Connect_InputMessage">
@@ -58,8 +59,71 @@
   <wsdl:message name="IServiceServer_GetUserData_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetUserDataResponse" />
   </wsdl:message>
+  <wsdl:message name="IServiceServer_GetEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmail" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_GetEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_GetCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCard" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_GetCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_GetLastTransaction_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastTransaction" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_GetLastTransaction_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastTransactionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_PayForTheTrip_InputMessage">
+    <wsdl:part name="parameters" element="tns:PayForTheTrip" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_PayForTheTrip_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PayForTheTripResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_ChangeUsername_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsername" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_ChangeUsername_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeUsernameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_ChangeEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmail" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_ChangeEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_BuyCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuyCard" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_BuyCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuyCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_ExtendCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendCard" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_ExtendCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ExtendCardResponse" />
+  </wsdl:message>
   <wsdl:message name="IServiceServer_ConsoleLog_InputMessage">
     <wsdl:part name="parameters" element="tns:ConsoleLog" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_GetUserType_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserType" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_GetUserType_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_SendConfirmationLetter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendConfirmationLetter" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_SendConfirmationLetter_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SendConfirmationLetterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IServiceServer_SendLetter_InputMessage">
+    <wsdl:part name="parameters" element="tns:SendLetter" />
   </wsdl:message>
   <wsdl:message name="IServiceServer_DataCallback_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:DataCallback" />
@@ -80,8 +144,51 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/GetUserData" message="tns:IServiceServer_GetUserData_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/GetUserDataResponse" message="tns:IServiceServer_GetUserData_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/GetEmail" message="tns:IServiceServer_GetEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/GetEmailResponse" message="tns:IServiceServer_GetEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/GetCard" message="tns:IServiceServer_GetCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/GetCardResponse" message="tns:IServiceServer_GetCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastTransaction">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/GetLastTransaction" message="tns:IServiceServer_GetLastTransaction_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/GetLastTransactionResponse" message="tns:IServiceServer_GetLastTransaction_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PayForTheTrip">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/PayForTheTrip" message="tns:IServiceServer_PayForTheTrip_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/PayForTheTripResponse" message="tns:IServiceServer_PayForTheTrip_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUsername">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/ChangeUsername" message="tns:IServiceServer_ChangeUsername_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/ChangeUsernameResponse" message="tns:IServiceServer_ChangeUsername_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/ChangeEmail" message="tns:IServiceServer_ChangeEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/ChangeEmailResponse" message="tns:IServiceServer_ChangeEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BuyCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/BuyCard" message="tns:IServiceServer_BuyCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/BuyCardResponse" message="tns:IServiceServer_BuyCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ExtendCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/ExtendCard" message="tns:IServiceServer_ExtendCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/ExtendCardResponse" message="tns:IServiceServer_ExtendCard_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="ConsoleLog">
       <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/ConsoleLog" message="tns:IServiceServer_ConsoleLog_InputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserType">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/GetUserType" message="tns:IServiceServer_GetUserType_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/GetUserTypeResponse" message="tns:IServiceServer_GetUserType_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendConfirmationLetter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/SendConfirmationLetter" message="tns:IServiceServer_SendConfirmationLetter_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/SendConfirmationLetterResponse" message="tns:IServiceServer_SendConfirmationLetter_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SendLetter">
+      <wsdl:input wsaw:Action="http://tempuri.org/IServiceServer/SendLetter" message="tns:IServiceServer_SendLetter_InputMessage" />
     </wsdl:operation>
     <wsdl:operation name="DataCallback">
       <wsdl:output wsaw:Action="http://tempuri.org/IServiceServer/DataCallback" message="tns:IServiceServer_DataCallback_OutputCallbackMessage" />
@@ -123,8 +230,104 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetEmail">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/GetEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCard">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/GetCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastTransaction">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/GetLastTransaction" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PayForTheTrip">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/PayForTheTrip" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeUsername">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/ChangeUsername" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeEmail">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/ChangeEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BuyCard">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/BuyCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExtendCard">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/ExtendCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ConsoleLog">
       <soap12:operation soapAction="http://tempuri.org/IServiceServer/ConsoleLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserType">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/GetUserType" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendConfirmationLetter">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/SendConfirmationLetter" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SendLetter">
+      <soap12:operation soapAction="http://tempuri.org/IServiceServer/SendLetter" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -10,6 +10,7 @@
 
 namespace SDT_Project.ServiceServer {
     using System.Runtime.Serialization;
+    using System;
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -18,6 +19,281 @@ namespace SDT_Project.ServiceServer {
         
         [System.Runtime.Serialization.EnumMemberAttribute()]
         UserData = 0,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TravelCard", Namespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures")]
+    [System.SerializableAttribute()]
+    public partial class TravelCard : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int BalanceField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SDT_Project.ServiceServer.CardCategories CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime FirstDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime LastDateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SDT_Project.ServiceServer.CardStatuses StatusField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private SDT_Project.ServiceServer.CardTypes TypeField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Balance {
+            get {
+                return this.BalanceField;
+            }
+            set {
+                if ((this.BalanceField.Equals(value) != true)) {
+                    this.BalanceField = value;
+                    this.RaisePropertyChanged("Balance");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SDT_Project.ServiceServer.CardCategories Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((this.CategoryField.Equals(value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime FirstDate {
+            get {
+                return this.FirstDateField;
+            }
+            set {
+                if ((this.FirstDateField.Equals(value) != true)) {
+                    this.FirstDateField = value;
+                    this.RaisePropertyChanged("FirstDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime LastDate {
+            get {
+                return this.LastDateField;
+            }
+            set {
+                if ((this.LastDateField.Equals(value) != true)) {
+                    this.LastDateField = value;
+                    this.RaisePropertyChanged("LastDate");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SDT_Project.ServiceServer.CardStatuses Status {
+            get {
+                return this.StatusField;
+            }
+            set {
+                if ((this.StatusField.Equals(value) != true)) {
+                    this.StatusField = value;
+                    this.RaisePropertyChanged("Status");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public SDT_Project.ServiceServer.CardTypes Type {
+            get {
+                return this.TypeField;
+            }
+            set {
+                if ((this.TypeField.Equals(value) != true)) {
+                    this.TypeField = value;
+                    this.RaisePropertyChanged("Type");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CardCategories", Namespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures")]
+    public enum CardCategories : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        A = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        T = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        M = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Tram = 4,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AT = 5,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ATM = 6,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ATTram = 7,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ATMTram = 8,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CardStatuses", Namespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures")]
+    public enum CardStatuses : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Active = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Inactive = 2,
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CardTypes", Namespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures")]
+    public enum CardTypes : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Base = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Violet = 2,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Red = 3,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        Full = 4,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Transaction", Namespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures")]
+    [System.SerializableAttribute()]
+    public partial class Transaction : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime DateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private double SumField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime Date {
+            get {
+                return this.DateField;
+            }
+            set {
+                if ((this.DateField.Equals(value) != true)) {
+                    this.DateField = value;
+                    this.RaisePropertyChanged("Date");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public double Sum {
+            get {
+                return this.SumField;
+            }
+            set {
+                if ((this.SumField.Equals(value) != true)) {
+                    this.SumField = value;
+                    this.RaisePropertyChanged("Sum");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
@@ -51,10 +327,10 @@ namespace SDT_Project.ServiceServer {
         System.Threading.Tasks.Task DisconnectAsync(uint id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/Registering", ReplyAction="http://tempuri.org/IServiceServer/RegisteringResponse")]
-        uint Registering(string userName, string userPassword);
+        uint Registering(string userName, string userPassword, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/Registering", ReplyAction="http://tempuri.org/IServiceServer/RegisteringResponse")]
-        System.Threading.Tasks.Task<uint> RegisteringAsync(string userName, string userPassword);
+        System.Threading.Tasks.Task<uint> RegisteringAsync(string userName, string userPassword, string email);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetUserData", ReplyAction="http://tempuri.org/IServiceServer/GetUserDataResponse")]
         string GetUserData(uint id, SDT_Project.ServiceServer.DataTypes dataType);
@@ -62,11 +338,77 @@ namespace SDT_Project.ServiceServer {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetUserData", ReplyAction="http://tempuri.org/IServiceServer/GetUserDataResponse")]
         System.Threading.Tasks.Task<string> GetUserDataAsync(uint id, SDT_Project.ServiceServer.DataTypes dataType);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetEmail", ReplyAction="http://tempuri.org/IServiceServer/GetEmailResponse")]
+        string GetEmail(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetEmail", ReplyAction="http://tempuri.org/IServiceServer/GetEmailResponse")]
+        System.Threading.Tasks.Task<string> GetEmailAsync(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetCard", ReplyAction="http://tempuri.org/IServiceServer/GetCardResponse")]
+        SDT_Project.ServiceServer.TravelCard GetCard(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetCard", ReplyAction="http://tempuri.org/IServiceServer/GetCardResponse")]
+        System.Threading.Tasks.Task<SDT_Project.ServiceServer.TravelCard> GetCardAsync(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetLastTransaction", ReplyAction="http://tempuri.org/IServiceServer/GetLastTransactionResponse")]
+        SDT_Project.ServiceServer.Transaction GetLastTransaction(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetLastTransaction", ReplyAction="http://tempuri.org/IServiceServer/GetLastTransactionResponse")]
+        System.Threading.Tasks.Task<SDT_Project.ServiceServer.Transaction> GetLastTransactionAsync(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/PayForTheTrip", ReplyAction="http://tempuri.org/IServiceServer/PayForTheTripResponse")]
+        bool PayForTheTrip(uint cardId, int newBalance);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/PayForTheTrip", ReplyAction="http://tempuri.org/IServiceServer/PayForTheTripResponse")]
+        System.Threading.Tasks.Task<bool> PayForTheTripAsync(uint cardId, int newBalance);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/ChangeUsername", ReplyAction="http://tempuri.org/IServiceServer/ChangeUsernameResponse")]
+        bool ChangeUsername(uint userId, string newUsername);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/ChangeUsername", ReplyAction="http://tempuri.org/IServiceServer/ChangeUsernameResponse")]
+        System.Threading.Tasks.Task<bool> ChangeUsernameAsync(uint userId, string newUsername);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/ChangeEmail", ReplyAction="http://tempuri.org/IServiceServer/ChangeEmailResponse")]
+        bool ChangeEmail(uint userId, string newEmail);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/ChangeEmail", ReplyAction="http://tempuri.org/IServiceServer/ChangeEmailResponse")]
+        System.Threading.Tasks.Task<bool> ChangeEmailAsync(uint userId, string newEmail);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/BuyCard", ReplyAction="http://tempuri.org/IServiceServer/BuyCardResponse")]
+        bool BuyCard(uint userId, double sum, SDT_Project.ServiceServer.CardTypes type, SDT_Project.ServiceServer.CardCategories category, int balance);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/BuyCard", ReplyAction="http://tempuri.org/IServiceServer/BuyCardResponse")]
+        System.Threading.Tasks.Task<bool> BuyCardAsync(uint userId, double sum, SDT_Project.ServiceServer.CardTypes type, SDT_Project.ServiceServer.CardCategories category, int balance);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/ExtendCard", ReplyAction="http://tempuri.org/IServiceServer/ExtendCardResponse")]
+        bool ExtendCard(uint cardId, int newBalance, System.DateTime newDate);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/ExtendCard", ReplyAction="http://tempuri.org/IServiceServer/ExtendCardResponse")]
+        System.Threading.Tasks.Task<bool> ExtendCardAsync(uint cardId, int newBalance, System.DateTime newDate);
+        
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceServer/ConsoleLog")]
         void ConsoleLog(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor);
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceServer/ConsoleLog")]
         System.Threading.Tasks.Task ConsoleLogAsync(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetUserType", ReplyAction="http://tempuri.org/IServiceServer/GetUserTypeResponse")]
+        int GetUserType(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/GetUserType", ReplyAction="http://tempuri.org/IServiceServer/GetUserTypeResponse")]
+        System.Threading.Tasks.Task<int> GetUserTypeAsync(uint id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/SendConfirmationLetter", ReplyAction="http://tempuri.org/IServiceServer/SendConfirmationLetterResponse")]
+        string SendConfirmationLetter(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IServiceServer/SendConfirmationLetter", ReplyAction="http://tempuri.org/IServiceServer/SendConfirmationLetterResponse")]
+        System.Threading.Tasks.Task<string> SendConfirmationLetterAsync(string email);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceServer/SendLetter")]
+        void SendLetter(string email, string body, string subject);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IServiceServer/SendLetter")]
+        System.Threading.Tasks.Task SendLetterAsync(string email, string body, string subject);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -120,12 +462,12 @@ namespace SDT_Project.ServiceServer {
             return base.Channel.DisconnectAsync(id);
         }
         
-        public uint Registering(string userName, string userPassword) {
-            return base.Channel.Registering(userName, userPassword);
+        public uint Registering(string userName, string userPassword, string email) {
+            return base.Channel.Registering(userName, userPassword, email);
         }
         
-        public System.Threading.Tasks.Task<uint> RegisteringAsync(string userName, string userPassword) {
-            return base.Channel.RegisteringAsync(userName, userPassword);
+        public System.Threading.Tasks.Task<uint> RegisteringAsync(string userName, string userPassword, string email) {
+            return base.Channel.RegisteringAsync(userName, userPassword, email);
         }
         
         public string GetUserData(uint id, SDT_Project.ServiceServer.DataTypes dataType) {
@@ -136,12 +478,100 @@ namespace SDT_Project.ServiceServer {
             return base.Channel.GetUserDataAsync(id, dataType);
         }
         
+        public string GetEmail(uint id) {
+            return base.Channel.GetEmail(id);
+        }
+        
+        public System.Threading.Tasks.Task<string> GetEmailAsync(uint id) {
+            return base.Channel.GetEmailAsync(id);
+        }
+        
+        public SDT_Project.ServiceServer.TravelCard GetCard(uint id) {
+            return base.Channel.GetCard(id);
+        }
+        
+        public System.Threading.Tasks.Task<SDT_Project.ServiceServer.TravelCard> GetCardAsync(uint id) {
+            return base.Channel.GetCardAsync(id);
+        }
+        
+        public SDT_Project.ServiceServer.Transaction GetLastTransaction(uint id) {
+            return base.Channel.GetLastTransaction(id);
+        }
+        
+        public System.Threading.Tasks.Task<SDT_Project.ServiceServer.Transaction> GetLastTransactionAsync(uint id) {
+            return base.Channel.GetLastTransactionAsync(id);
+        }
+        
+        public bool PayForTheTrip(uint cardId, int newBalance) {
+            return base.Channel.PayForTheTrip(cardId, newBalance);
+        }
+        
+        public System.Threading.Tasks.Task<bool> PayForTheTripAsync(uint cardId, int newBalance) {
+            return base.Channel.PayForTheTripAsync(cardId, newBalance);
+        }
+        
+        public bool ChangeUsername(uint userId, string newUsername) {
+            return base.Channel.ChangeUsername(userId, newUsername);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ChangeUsernameAsync(uint userId, string newUsername) {
+            return base.Channel.ChangeUsernameAsync(userId, newUsername);
+        }
+        
+        public bool ChangeEmail(uint userId, string newEmail) {
+            return base.Channel.ChangeEmail(userId, newEmail);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ChangeEmailAsync(uint userId, string newEmail) {
+            return base.Channel.ChangeEmailAsync(userId, newEmail);
+        }
+        
+        public bool BuyCard(uint userId, double sum, SDT_Project.ServiceServer.CardTypes type, SDT_Project.ServiceServer.CardCategories category, int balance) {
+            return base.Channel.BuyCard(userId, sum, type, category, balance);
+        }
+        
+        public System.Threading.Tasks.Task<bool> BuyCardAsync(uint userId, double sum, SDT_Project.ServiceServer.CardTypes type, SDT_Project.ServiceServer.CardCategories category, int balance) {
+            return base.Channel.BuyCardAsync(userId, sum, type, category, balance);
+        }
+        
+        public bool ExtendCard(uint cardId, int newBalance, System.DateTime newDate) {
+            return base.Channel.ExtendCard(cardId, newBalance, newDate);
+        }
+        
+        public System.Threading.Tasks.Task<bool> ExtendCardAsync(uint cardId, int newBalance, System.DateTime newDate) {
+            return base.Channel.ExtendCardAsync(cardId, newBalance, newDate);
+        }
+        
         public void ConsoleLog(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor) {
             base.Channel.ConsoleLog(msg, importance, foregroundColor);
         }
         
         public System.Threading.Tasks.Task ConsoleLogAsync(string msg, SDT_Project.ServiceServer.MessageImportance importance, System.ConsoleColor foregroundColor) {
             return base.Channel.ConsoleLogAsync(msg, importance, foregroundColor);
+        }
+        
+        public int GetUserType(uint id) {
+            return base.Channel.GetUserType(id);
+        }
+        
+        public System.Threading.Tasks.Task<int> GetUserTypeAsync(uint id) {
+            return base.Channel.GetUserTypeAsync(id);
+        }
+        
+        public string SendConfirmationLetter(string email) {
+            return base.Channel.SendConfirmationLetter(email);
+        }
+        
+        public System.Threading.Tasks.Task<string> SendConfirmationLetterAsync(string email) {
+            return base.Channel.SendConfirmationLetterAsync(email);
+        }
+        
+        public void SendLetter(string email, string body, string subject) {
+            base.Channel.SendLetter(email, body, subject);
+        }
+        
+        public System.Threading.Tasks.Task SendLetterAsync(string email, string body, string subject) {
+            return base.Channel.SendLetterAsync(email, body, subject);
         }
     }
 }

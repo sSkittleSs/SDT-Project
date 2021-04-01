@@ -1,24 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:simpleType name="ConsoleColor">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/SDT_Project.AdditionalStructures" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8301/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="TravelCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Balance" type="xs:int" />
+      <xs:element minOccurs="0" name="Category" type="tns:CardCategories" />
+      <xs:element minOccurs="0" name="FirstDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="LastDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Status" type="tns:CardStatuses" />
+      <xs:element minOccurs="0" name="Type" type="tns:CardTypes" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="TravelCard" nillable="true" type="tns:TravelCard" />
+  <xs:simpleType name="CardCategories">
     <xs:restriction base="xs:string">
-      <xs:enumeration value="Black" />
-      <xs:enumeration value="DarkBlue" />
-      <xs:enumeration value="DarkGreen" />
-      <xs:enumeration value="DarkCyan" />
-      <xs:enumeration value="DarkRed" />
-      <xs:enumeration value="DarkMagenta" />
-      <xs:enumeration value="DarkYellow" />
-      <xs:enumeration value="Gray" />
-      <xs:enumeration value="DarkGray" />
-      <xs:enumeration value="Blue" />
-      <xs:enumeration value="Green" />
-      <xs:enumeration value="Cyan" />
-      <xs:enumeration value="Red" />
-      <xs:enumeration value="Magenta" />
-      <xs:enumeration value="Yellow" />
-      <xs:enumeration value="White" />
+      <xs:enumeration value="A">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="T">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="M">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Tram">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="AT">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">5</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ATM">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">6</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ATTram">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">7</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="ATMTram">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">8</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
     </xs:restriction>
   </xs:simpleType>
-  <xs:element name="ConsoleColor" nillable="true" type="tns:ConsoleColor" />
+  <xs:element name="CardCategories" nillable="true" type="tns:CardCategories" />
+  <xs:simpleType name="CardStatuses">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Active">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Inactive">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CardStatuses" nillable="true" type="tns:CardStatuses" />
+  <xs:simpleType name="CardTypes">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Base">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">1</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Violet">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">2</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Red">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">3</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="Full">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">4</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="CardTypes" nillable="true" type="tns:CardTypes" />
+  <xs:complexType name="Transaction">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Date" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Sum" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Transaction" nillable="true" type="tns:Transaction" />
 </xs:schema>

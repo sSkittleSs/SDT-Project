@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 //using MySql.Data.MySqlClient;
 using SDT_Project.ServiceServer;
+using SDT_Project.ViewModels;
 
 namespace SDT_Project
 {
@@ -23,13 +24,11 @@ namespace SDT_Project
     /// </summary>
     public partial class MainWindow : Window, ServiceServer.IServiceServerCallback
     {
-        bool isConnected = false;
-        ServiceServerClient client;
-        uint id;
-
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = new MainWindowVM(this);
         }
 
         /// <summary>
@@ -84,7 +83,7 @@ namespace SDT_Project
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            client?.Disconnect(id);
+            ((MainWindowVM)DataContext).Disconnect.Execute();
         }
     }
 }

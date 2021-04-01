@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="SDT_Project.Views.BuyCardWindow"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SDT_Project.Views"
+      mc:Ignorable="d" 
+      Height="300" Width="720" Background="Transparent">
+
+    <Border Height="auto" Width="auto" BorderBrush="DarkGray" Background="#1D2733" BorderThickness="1" CornerRadius="20">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20px"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="20px"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="1.5*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0" BorderBrush="DarkGray" BorderThickness="1" CornerRadius="20" Grid.ColumnSpan="2"/>
+                <Border Grid.Column="0" BorderBrush="DarkGray" BorderThickness="0 0 1 0"/>
+
+                <Image Grid.Column="0" Source="{Binding PreviewImage}" Margin="20, 1" Stretch="Uniform" Width="280"/>
+
+                <Grid Grid.Column="1" Margin="10 1 20 1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  Style="{StaticResource TextBlockUCP}" HorizontalAlignment="Center" Text="Покупка"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource TextBlockUCP}" Text="Тип транспорта:"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource TextBlockUCP}" Text="Шаблон:"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource TextBlockUCP}" Text="Кол-во поездок:"/>
+                    <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource TextBlockUCP}" Text="Итог:"/>
+                    <Button Grid.Row="6" Grid.ColumnSpan="2" Grid.RowSpan="2" x:Name="ButtonPay" Content="Заказать" Style="{StaticResource Button}" Command="{Binding Order, Mode=OneWay}" Padding="2" Margin="0 5" Height="35" Width="160"/>
+                    <!--A = 1, T, M, Tram, AT, ATM, ATTram, ATMTram-->
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedIndex="{Binding CardCategory, UpdateSourceTrigger=PropertyChanged}" VerticalContentAlignment="Center" Background="#1D2733" Style="{DynamicResource ComboBox}" Foreground="White" IsEditable="False" Height="25" Margin="5 0">
+                        <ComboBoxItem Content="А;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="Т;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="М;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="Трам;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="А; Т;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="А; Т; М;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="А; Т; Трам;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="А; Т; М; Трам;" Background="#1D2733" Style="{DynamicResource ComboBoxItem}"/>
+                        <ComboBoxItem Content="А; Т; М; Трам; Top-level" Background="#1D2733">
+                            <ComboBoxItem.Style>
+                                <Style BasedOn="{StaticResource ComboBoxItem}" TargetType="ComboBoxItem">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsAdmin, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ComboBoxItem.Style>
+                        </ComboBoxItem>
+                    </ComboBox>
+                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource TextBlockUCP}" Margin="5 0" HorizontalAlignment="Left" Text="{Binding CardType, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Height="22" Width="Auto" BorderThickness="1" HorizontalAlignment="Stretch" Margin="5 0" x:Name="TextBoxCardBalance" Text="{Binding CardBalance, UpdateSourceTrigger=PropertyChanged}" Style="{StaticResource TextBoxEdit}" IsEnabled="True"/>
+
+                    <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource TextBlockUCP}" Margin="5 0" HorizontalAlignment="Left" Text="{Binding Price, UpdateSourceTrigger=PropertyChanged}"/>
+                </Grid>
+            </Grid>
+
+            <!--<Button Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="2" x:Name="Button" Content="Продлить" Style="{StaticResource ButtonExtend}" Command="{Binding Extend, Mode=OneWay}"/>-->
+        </Grid>
+    </Border>
+</UserControl>

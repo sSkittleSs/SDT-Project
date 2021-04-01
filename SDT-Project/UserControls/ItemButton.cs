@@ -47,17 +47,17 @@ namespace SDT_Project.UserControls
     public class ItemButton : Button
     {
         public static readonly DependencyProperty ActiveLineProperty;
-        public static readonly DependencyProperty BlurLineWidthProperty;
+        public static readonly DependencyProperty IdProperty;
 
         static ItemButton()
         {
-            ActiveLineProperty = DependencyProperty.Register("ActiveLine", typeof(bool), typeof(ItemButton));
-            BlurLineWidthProperty = DependencyProperty.Register("BlurLineWidth", typeof(double), typeof(ItemButton));
+            ActiveLineProperty = DependencyProperty.Register("ActiveLine", typeof(Visibility), typeof(ItemButton));
+            IdProperty = DependencyProperty.Register("Id", typeof(string), typeof(ItemButton));
 
             DefaultStyleKeyProperty.OverrideMetadata(typeof(ItemButton), new FrameworkPropertyMetadata(typeof(ItemButton)));
         }
 
-        public bool ActiveLine { get; set; }
-        public double BlurLineWidth { get; set; }
+        public Visibility ActiveLine { get; set; }
+        public string Id { get; set; }
     }
 }
